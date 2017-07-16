@@ -1,0 +1,33 @@
+<dom-module id="custom-element">
+  <template>
+    <style>
+
+    </style>
+    <iron-ajax
+            auto
+            id="ajaxPost"
+            url="{{url}}"
+            last-response="{{prices}}"
+            handle-as="json"
+            on-response="handleResponse">
+    </iron-ajax>
+
+  </template>
+
+  <script>
+
+      class CustomElement extends Polymer.Element {
+          static get is() { return 'custom-element'; }
+          static get properties() {
+              return {
+                  url: {
+                      type: String,
+                      value: ''
+                  }
+              }
+          }
+      }
+      // Register the x-custom element with the browser
+      customElements.define(CustomElement, CustomElement.is);
+  </script>
+</dom-module>

@@ -1,0 +1,7 @@
+front_homepage:
+    path:     /
+    defaults: { _controller: FrontBundle:Home:index }
+
+front_platform:
+    path:     /{idEvenement}
+    defaults: { _controller: FrontBundle:Platform:index }

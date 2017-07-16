@@ -1,0 +1,10 @@
+{% extends '@Front/layout.html.twig' %}
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        <div class="list-group">
+            {% for idEvenement, config in  configs %}
+                <a href="{{ path('front_platform', {'idEvenement': idEvenement }) }}" class="list-group-item">{{ config.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

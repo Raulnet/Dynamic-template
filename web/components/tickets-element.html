@@ -1,0 +1,40 @@
+<link rel="import"  href="../lib/polymer/polymer-element.html">
+<dom-module id="tickets-element">
+  <!-- Optional shadow DOM template -->
+  <template>
+    <iron-ajax
+            auto
+            id="ajaxPost"
+            url="{{url}}"
+            handle-as="json"
+            on-response="handleResponse">
+    </iron-ajax>
+    <h4>tickets-element</h4>
+    <template is="dom-repeat" items="{{items}}">
+      <p>{{item}}</p>
+    </template>
+  </template>
+  <script>
+      // Define the element's API using an ES2015 class
+      class TicketsElement extends Polymer.Element {
+          static get is() { return 'tickets-element'; }
+          // Declare properties for the element's public API
+          static get properties() {
+              return {
+                  items: {
+                      type: Array,
+                      value: []
+                  }, url: {
+                      type: String,
+                      value: ''
+                  }
+              }
+          }
+          handleResponse(e, request) {
+              this.items = request.xhr.response;
+          }
+      }
+      // Register the x-custom element with the browser
+      customElements.define(TicketsElement.is, TicketsElement);
+  </script>
+</dom-module>

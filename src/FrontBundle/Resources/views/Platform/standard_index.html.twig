@@ -1,0 +1,18 @@
+{% extends '@Front/Platform/Layouts/layout1.html.twig' %}
+{% block customWebcomponent %}
+    <link rel="import" href="{{ asset('components/tickets-element.html') }}">
+{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('front_homepage') }}">Home</a></li>
+        <li class="active">{{ config.title }}</li>
+    </ol>
+{% endblock %}
+{% block header %}
+    {{ include('@Front/Platform/Components/_block_header.html.twig', {'config': config}) }}
+{% endblock %}
+{% block helper %}
+    <h3>Standard platform: {{ config.title }}</h3>
+    <tickets-element url="{{ path('api_core_route', {'idEvenement': config.idEvenement, 'action': 'init'}) }}"></tickets-element>
+{% endblock %}
+

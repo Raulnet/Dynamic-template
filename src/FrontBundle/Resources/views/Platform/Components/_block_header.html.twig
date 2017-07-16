@@ -1,0 +1,8 @@
+{% if config.headerType == 'img' %}
+    <img class="img-responsive" src="{{ config.headerValue }}">
+{% endif %}
+{% if config.headerType == 'title' %}
+    <div class="jumbotron">
+        <h1>{{ config.headerValue }} <small>: E{{ config.idEvenement }}</small></h1>
+    </div>
+{% endif %}

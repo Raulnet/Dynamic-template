@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{{ asset('lib/bootstrap/dist/css/bootstrap.min.css') }}">
+    <script src="{{ asset('lib/webcomponentsjs/webcomponents-lite.js') }}"></script>
+    <link rel="import" href="{{ asset('lib/polymer/polymer.html') }}">
+    <link rel="import" href="{{ asset('lib/iron-ajax/iron-ajax.html') }}">
+    {% block customWebcomponent %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% block breadcrumb %}
+
+                {% endblock %}
+            </div>
+            <header class="col-xs-12">
+                {% block header %}
+
+                {% endblock %}
+            </header>
+            <div class="col-md-6">
+                {% block helper %}
+
+                {% endblock %}
+            </div>
+            <div class="col-md-6">
+                {% block lot %}
+
+                {% endblock %}
+            </div>
+            <div class="col-xs-12">
+                {% block agencies %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
