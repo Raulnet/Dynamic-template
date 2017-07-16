@@ -3,9 +3,9 @@ symlabs
 
 Prototype Dynamic Template // Dynamic API Routing
 
-###Required:
+### Required:
 install Bower client
 
-###Install:
+### Install:
 composer install
 bin/console server:run
