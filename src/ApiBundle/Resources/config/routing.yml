@@ -1,4 +1,4 @@
 api_core_route:
     path:     /{idEvenement}/{action}
     defaults: { _controller: ApiBundle:Route:root, action: null }
-    methods: [GET, POST, DELETE, UPDATE]
+    methods: [GET, POST, DELETE, PUT]
