@@ -57,7 +57,7 @@ class ConfigPlateformService
             'template_event_custom'   => true,
             'id_evenement'      => 145948,
             'title'             => 'Custom Template Event 145948',
-            'api_custom'        => false,
+            'api_custom'        => true,
             'style_custom'      => false,
             'header_type'       => 'img',
             'header_value'      => 'http://i.imgur.com/rjhzdd1.jpg'

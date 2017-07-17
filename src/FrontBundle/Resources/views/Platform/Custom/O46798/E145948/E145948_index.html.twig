@@ -1,4 +1,11 @@
 {% extends '@Front/Platform/standard_index.html.twig' %}
+{% block customWebcomponent %}
+    <link rel="import" href="{{ asset('components/tickets-element.html') }}">
+    <link rel="import" href="{{ asset('components/custom-element.html') }}">
+{% endblock %}
+{% block helper %}
+    <custom-element url="{{ path('api_core_route', {'idEvenement': config.idEvenement, 'action': 'custom'}) }}"></custom-element>
+{% endblock %}
 {% block lot %}
     <a title="Logiciel billetterie en ligne"
        href="https://www.weezevent.com//?c=sys_widget"

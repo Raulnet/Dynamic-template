@@ -2,13 +2,13 @@
 
 namespace ApiBundle\Controller\Custom\O46798;
 
-use ApiBundle\Controller\CoreController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use ApiBundle\Controller\CoreController;
 
 /**
- * Class CustomController
- * @package ApiBundle\Controller\O46798
+ * Class CoreController
+ * @package ApiBundle\Controller
  */
 class CustomO46798Controller extends CoreController
 {
@@ -22,29 +22,25 @@ class CustomO46798Controller extends CoreController
             return $this->sendResponse(Response::HTTP_METHOD_NOT_ALLOWED);
         }
         $content = [
-            'Method init successfully overide'
-        ];
+            'function api init successfully overide',
+            'Viva La Banana !!!',
+          ];
         return $this->sendResponse(Response::HTTP_OK, $content);
-
     }
 
     /**
      * @param Request $request
      * @return Response
      */
-    public function customAction(Request $request)
-    {
+    public function customAction(Request $request){
         if(!$this->methodIsAllowed($request, 'GET')) {
             return $this->sendResponse(Response::HTTP_METHOD_NOT_ALLOWED);
         }
         $content = [
-            'message' => 'Content From customAction Orga O46798',
-            'content' => 'hello from customController Bundle'
+            ['id' => 1, 'content' => 'content item 1'],
+            ['id' => 2, 'content' => 'content item 2'],
+            ['id' => 3, 'content' => 'content item 3'],
         ];
-        return new Response(
-            json_encode($content),
-            Response::HTTP_OK,
-            ['content-type' => 'application/json']
-        );
+        return $this->sendResponse(Response::HTTP_OK, $content);
     }
 }

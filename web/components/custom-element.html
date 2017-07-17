@@ -1,33 +1,105 @@
+<link rel="import"  href="../lib/polymer/polymer-element.html">
 <dom-module id="custom-element">
   <template>
     <style>
-
+      .table {
+        border-collapse: collapse !important;
+      }
+      .table td,
+      .table th {
+        background-color: #fff !important;
+      }
+      .table-bordered th,
+      .table-bordered td {
+        border: 1px solid #ddd !important;
+      }
+      table {
+        background-color: transparent;
+      }
+      caption {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color: #777;
+        text-align: left;
+      }
+      th {
+        text-align: left;
+      }
+      .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+      .table > thead > tr > th,
+      .table > tbody > tr > th,
+      .table > tfoot > tr > th,
+      .table > thead > tr > td,
+      .table > tbody > tr > td,
+      .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+      }
+      .table > thead > tr > th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #ddd;
+      }
+      .table > caption + thead > tr:first-child > th,
+      .table > colgroup + thead > tr:first-child > th,
+      .table > thead:first-child > tr:first-child > th,
+      .table > caption + thead > tr:first-child > td,
+      .table > colgroup + thead > tr:first-child > td,
+      .table > thead:first-child > tr:first-child > td {
+        border-top: 0;
+      }
+      .table > tbody + tbody {
+        border-top: 2px solid #ddd;
+      }
     </style>
     <iron-ajax
             auto
             id="ajaxPost"
             url="{{url}}"
-            last-response="{{prices}}"
             handle-as="json"
             on-response="handleResponse">
     </iron-ajax>
-
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <template is="dom-repeat" items="{{items}}">
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.content}}</td>
+        </tr>
+      </template>
+      </tbody>
+    </table>
   </template>
-
   <script>
-
       class CustomElement extends Polymer.Element {
           static get is() { return 'custom-element'; }
           static get properties() {
               return {
-                  url: {
+                  items: {
+                      type: Array,
+                      value: []
+                  }, url: {
                       type: String,
                       value: ''
                   }
               }
           }
+          handleResponse(e, request) {
+              console.log('ok');
+              this.items = request.xhr.response;
+          }
       }
-      // Register the x-custom element with the browser
-      customElements.define(CustomElement, CustomElement.is);
+      customElements.define(CustomElement.is, CustomElement);
   </script>
 </dom-module>
