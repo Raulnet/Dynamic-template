@@ -9,5 +9,12 @@ namespace ApiBundle\Service;
  */
 class ApiService
 {
-
+    /**
+     * @param float $a
+     * @param float $b
+     * @return float
+     */
+    public function add($a, $b){
+        return (float)$a+(float)$b;
+    }
 }
