@@ -1,5 +1,4 @@
-<?php
-namespace tests\FrontBundle\Service;
+<?php namespace tests\FrontBundle\Service;
 
 use FrontBundle\Service\TemplateService;
 use \PHPUnit\Framework\TestCase;
@@ -12,7 +11,6 @@ use AppBundle\Entity\ConfigPlatform;
  * Time: 17:20
  */
 class TemplateServiceTest extends TestCase{
-
 
     public function getTemplateTest(){
         $container = new ContainerTest();
