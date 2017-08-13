@@ -18,8 +18,6 @@ class ConfigPlateformService
     private $config = [
         145945 => [
             'id_organisateur'   => 46798,
-            'template_custom'   => false,
-            'template_event_custom'   => false,
             'id_evenement'      => 145945,
             'title'             => 'Standard',
             'api_custom'        => false,
@@ -29,8 +27,6 @@ class ConfigPlateformService
         ],
         145946 => [
             'id_organisateur'   => 46798,
-            'template_custom'   => true,
-            'template_event_custom'   => false,
             'id_evenement'      => 145946,
             'title'             => 'Custom Orga Template & Custom Orga Api',
             'api_custom'        => true,
@@ -41,8 +37,6 @@ class ConfigPlateformService
         ],
         145947 => [
             'id_organisateur'   => 46798,
-            'template_custom'   => false,
-            'template_event_custom'   => false,
             'id_evenement'      => 145947,
             'title'             => 'Custom Orga Api',
             'api_custom'        => true,
@@ -53,8 +47,6 @@ class ConfigPlateformService
         ],
         145948 => [
             'id_organisateur'   => 46798,
-            'template_custom'   => false,
-            'template_event_custom'   => true,
             'id_evenement'      => 145948,
             'title'             => 'Custom Template Event 145948',
             'api_custom'        => true,

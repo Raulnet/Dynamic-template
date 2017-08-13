@@ -4,3 +4,4 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     template.service:
         class: FrontBundle\Service\TemplateService
+        arguments: ["@service_container"]
