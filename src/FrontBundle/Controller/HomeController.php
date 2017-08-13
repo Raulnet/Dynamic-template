@@ -2,13 +2,11 @@
 
 namespace FrontBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 /**
  * Class HomeController
  * @package FrontBundle\Controller
  */
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response

@@ -17,9 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class TemplateService
 {
-    const TEMPLATE_PLATFORM_STANDARD = '@Front/Platform/standard_index.html.twig';
-    const TEMPLATE_PLATFORM_ORGA_CUSTOM = 'Custom/O%id_orga%:O%id_orga%_index.html.twig';
-    const TEMPLATE_PLATFORM_EVENT_CUSTOM = 'Custom/O%id_orga%/E%id_evenement%:E%id_evenement%_index.html.twig';
+    const TEMPLATE_PLATFORM_STANDARD = '@Front/Platform/%view%.html.twig';
+    const TEMPLATE_PLATFORM_ORGA_CUSTOM = 'Custom/O%id_orga%:O%id_orga%_%view%.html.twig';
+    const TEMPLATE_PLATFORM_EVENT_CUSTOM = 'Custom/O%id_orga%/E%id_evenement%:E%id_evenement%_%view%.html.twig';
     const TEMPLATE_CUSTOM_PLATFORM_ROOT = 'FrontBundle:Platform/';
     const FILE_CUSTOM_PLATFORM_ROOT = '/Resources/views/Platform/';
     const ENVIRONNEMENT_PROD = "prod";
@@ -39,38 +39,41 @@ class TemplateService
     }
 
     /**
-     * @param ConfigPlatform $configPlatform
+     * @param ConfigPlatform    $configPlatform
+     * @param string            $view
      * @return string
      */
-    public function getTemplate(ConfigPlatform $configPlatform){
-        return $this->buildRootTemplate($configPlatform);
+    public function getTemplate(ConfigPlatform $configPlatform, $view){
+        return $this->buildRootTemplate($configPlatform, $view);
     }
 
     /**
      * @param ConfigPlatform $configPlatform
+     * @param string $view
      * @return string
-     * @throws \Exception
      */
-    private function buildRootTemplate(ConfigPlatform $configPlatform){
+    private function buildRootTemplate(ConfigPlatform $configPlatform, $view = ''){
 
-        $eventTemplate = $this->getEventTemplate($configPlatform);
+        $eventTemplate = $this->getEventTemplate($configPlatform, $view);
         if($eventTemplate){
             return $eventTemplate;
         }
-        $orgaTemplate = $this->getOrgaTemplate($configPlatform);
+        $orgaTemplate = $this->getOrgaTemplate($configPlatform, $view);
         if($orgaTemplate){
             return $orgaTemplate;
         }
-        return self::TEMPLATE_PLATFORM_STANDARD;
+        return str_replace('%view%', $view,  self::TEMPLATE_PLATFORM_STANDARD);
     }
 
     /**
      * @param ConfigPlatform $configPlatform
+     * @param string $view
      * @return bool|string
      */
-    private function  getEventTemplate(ConfigPlatform $configPlatform){
+    private function  getEventTemplate(ConfigPlatform $configPlatform, $view = ''){
         $root = str_replace('%id_orga%', $configPlatform->getIdOrganisateur(), self::TEMPLATE_PLATFORM_EVENT_CUSTOM);
         $root = str_replace('%id_evenement%', $configPlatform->getIdEvenement(), $root);
+        $root = str_replace('%view%', $view, $root);
         if($this->hasFile($root)){
             return self::TEMPLATE_CUSTOM_PLATFORM_ROOT.$root;
         }
@@ -79,10 +82,12 @@ class TemplateService
 
     /**
      * @param ConfigPlatform $configPlatform
-     * @return bool
+     * @param string $view
+     * @return bool|string
      */
-    private function getOrgaTemplate(ConfigPlatform $configPlatform){
+    private function getOrgaTemplate(ConfigPlatform $configPlatform, $view = ''){
         $root = str_replace('%id_orga%', $configPlatform->getIdOrganisateur(), self::TEMPLATE_PLATFORM_ORGA_CUSTOM);
+        $root = str_replace('%view%', $view, $root);
         if($this->hasFile($root)){
             return self::TEMPLATE_CUSTOM_PLATFORM_ROOT.$root;
         }
